@@ -1,5 +1,5 @@
 appdirs==1.4.3
-gpxpy==0.1
+gpxpy==1.4.2
 isodate==0.5.4
 packaging==16.8
 pyparsing==2.2.0

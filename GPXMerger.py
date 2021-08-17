@@ -18,11 +18,11 @@ args = parser.parse_args()
 directoy = args.directory
 output = args.output
 
-merged = gpxpy.GPX()
+merged = gpxpy.gpx.GPX()
 for root, _, files in os.walk(directoy):
     for file in files:
         if file.endswith(".gpx"):
-            gpx_file = open("/".join([root,file]), 'r')
+            gpx_file = open("/".join([root,file]), 'r', encoding="utf-8")
             gpx = gpxpy.parse(gpx_file)
             for track in gpx.tracks:
                 track.name = file
@@ -33,4 +33,6 @@ for root, _, files in os.walk(directoy):
             for wp in gpx.waypoints:
                 merged.waypoints.append(wp)
 
-merged.write(output)
+# Write to the output file
+with open(output, 'w') as o:
+    o.write(merged.to_xml())
